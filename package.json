@@ -1,6 +1,6 @@
 {
   "name": "redux-basics",
-  "homepage": "/react-redux",
+  "homepage": "react-redux",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
