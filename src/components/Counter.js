@@ -9,19 +9,26 @@ const Counter = () => {
    * When the element is unmounted, the subscription is automatically unsubscribed.
    */
   const counter = useSelector(state => state.counter),
+    showCounter = useSelector(state => state.showCounter),
     dispatch = useDispatch(), // We need to call the hook to use it
     incrementHandler = () => dispatch({ type: 'INCREASE' }),
     decrementHandler = () => dispatch({ type: 'DECREASE' }),
-    toggleCounterHandler = () => { };
+    increaseByHandler = () => dispatch({ type: 'INCREASE_BY', payload: 5 }),
+    toggleCounterHandler = () => dispatch({ type: 'TOGGLE_COUNTER' });
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
-      <div className={classes.actions}>
-        <button onClick={incrementHandler}>Increment</button>
-        <button onClick={decrementHandler}>Decrement</button>
-      </div>
+      {showCounter &&
+        <>
+          <div className={classes.value}>{counter}</div>
+          <div className={classes.actions}>
+            <button onClick={incrementHandler}>Increment</button>
+            <button onClick={increaseByHandler}>Add 5</button>
+            <button onClick={decrementHandler}>Decrement</button>
+          </div>
+        </>
+      }
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
     </main>
   );
