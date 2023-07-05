@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { counterActions } from '../store/index';
 import classes from './Counter.module.css';
 
 const Counter = () => {
@@ -11,10 +12,10 @@ const Counter = () => {
   const counter = useSelector(state => state.counter),
     showCounter = useSelector(state => state.showCounter),
     dispatch = useDispatch(), // We need to call the hook to use it
-    incrementHandler = () => dispatch({ type: 'INCREASE' }),
-    decrementHandler = () => dispatch({ type: 'DECREASE' }),
-    increaseByHandler = () => dispatch({ type: 'INCREASE_BY', payload: 5 }),
-    toggleCounterHandler = () => dispatch({ type: 'TOGGLE_COUNTER' });
+    incrementHandler = () => dispatch(counterActions.increment()),
+    decrementHandler = () => dispatch(counterActions.decrement()),
+    increaseByHandler = () => dispatch(counterActions.increaseBy(5)), // The value is passed to the reducer as payload
+    toggleCounterHandler = () => dispatch(counterActions.toggleCounter());
 
   return (
     <main className={classes.counter}>
