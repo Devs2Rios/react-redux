@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { counterActions } from '../store/index';
+import { counterActions } from '../store';
 import classes from './Counter.module.css';
 
 const Counter = () => {
@@ -9,8 +9,8 @@ const Counter = () => {
    * It's automagically subscribed to the store, and updates the values reactively.
    * When the element is unmounted, the subscription is automatically unsubscribed.
    */
-  const counter = useSelector(state => state.counter),
-    showCounter = useSelector(state => state.showCounter),
+  const counter = useSelector(state => state.counter.counter),
+    showCounter = useSelector(state => state.counter.showCounter),
     dispatch = useDispatch(), // We need to call the hook to use it
     incrementHandler = () => dispatch(counterActions.increment()),
     decrementHandler = () => dispatch(counterActions.decrement()),
